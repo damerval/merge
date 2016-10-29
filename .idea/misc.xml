@@ -5,18 +5,4 @@
       <PhpUnitSettings load_method="CUSTOM_LOADER" />
     </phpunit_settings>
   </component>
-  <component name="ProjectInspectionProfilesVisibleTreeState">
-    <entry key="Project Default">
-      <profile-state>
-        <expanded-state>
-          <State>
-            <id />
-          </State>
-          <State>
-            <id>SQL</id>
-          </State>
-        </expanded-state>
-      </profile-state>
-    </entry>
-  </component>
 </project>
