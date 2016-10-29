@@ -1,0 +1,78 @@
+@charset "utf-8";
+body {
+	background-color:darkgreen;
+	margin:0;
+	padding:0;
+	font-family:Tahoma, Arial, Helvetica, sans-serif;
+	font-size:9pt;
+}
+
+#container {
+	width:900px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:3px;
+}
+
+#header {
+	background-color:bisque;
+	height:100px;
+	border-top: 1px solid lightgrey;
+	border-left: 1px solid lightgrey;
+	border-right: 1px solid lightgrey;
+	border-bottom:1px solid lightgrey;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+	margin:0;
+	clear:both;
+}
+
+#logo {
+	float:left;
+}
+
+#title {
+	float:left;
+	clear:right;
+	margin-left:35px;
+}
+
+#middle {
+	height:525px;
+	background-color:linen;
+	border-left:1px solid lightgrey;
+	border-right:1px solid lightgrey;
+}
+
+#footer {
+	background-color:darkgray;
+	border-bottom:1px solid lightgrey;
+	border-left:1px solid lightgrey;
+	border-right:1px solid lightgrey;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	clear:both;
+	font-size:8pt;
+	text-align:center;
+}
+
+#loginbox {
+	background-color: LightGoldenRodYellow; 
+	width: 400px; 
+	padding: 10px 0px 15px 10px; 
+	margin-top: 150px;
+	margin-left:auto;
+	margin-right:auto;
+	border-radius:5px;
+	border-left:1px solid lightgrey;
+	border-top: 1px solid lightgrey;
+	border-right: 1px solid grey;
+	border-bottom:1px solid grey;	
+}
+div.inputpair {clear: both; float: none; padding-bottom:15px; padding-top:10px}
+div.inputpair label {clear: left;  display: block;  float: left;  font-size:9pt;	font-weight:bold;	margin-top:5px;  width: 90px;	vertical-align:text-bottom;}
+div.inputpair input {clear: right;  float: left;	font-size:9pt;  margin-left: 10px;  width: 150px;}
+
+.formtip {font-size:7pt; clear:both}
+.errormsg {font-weight:bold; color:Red; font-size:10px}
+	
