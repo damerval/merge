@@ -68,3 +68,53 @@ var individualColumns = [
 ];
 
 var individualAdapter = new $.jqx.dataAdapter(individualSource);
+
+var exclusionsSource = {
+  url: "helpers/exclusions.php",
+  dataType: 'json',
+  dataFields: [
+    { name: 'eid', type: 'int' },
+    { name: 'cid', type: 'int' },
+    { name: 'exStart', map: 'exStart>date', type: 'date' },
+    { name: 'exEnd', map: 'exEnd>date', type: 'date' }
+  ],
+  id: 'uid'
+};
+
+var exclusionsColumns = [
+  { text: "Employee", dataField: 'eid' },
+  { text: "Client", dataField: 'cid' },
+  { text: "Start", dataField: 'exStart', cellsFormat: 'MM/dd/yyyy' },
+  { text: "End", dataField: 'exEnd', cellsFormat: 'MM/dd/yyyy' }
+];
+
+var exclusionsAdapter = new $.jqx.dataAdapter(exclusionsSource);
+
+var userAccessSource = {
+  url: "helpers/userAccess.php",
+  dataType: 'json',
+  dataFields: [
+    { name: 'hrID', type: 'int' },
+    { name: 'firstName', map: 'fn' },
+    { name: 'lastName', map: 'ln' },
+    { name: 'emiID', type: 'int' },
+    { name: 'jysID', type: 'int' },
+    { name: 'userLogin', map: 'ul' },
+    { name: 'userJYSNumber', map: 'un', type: 'int' },
+    { name: 'sqlLogin', map: 'sl' },
+    { name: 'emiDuplicates', map: 'dupes', type: 'int' }
+  ],
+  id: 'hrID'
+};
+
+var userAccessColumns = [
+  { text: "HR ID", dataField: 'hrID' },
+  { text: "First Name", dataField: 'firstName' },
+  { text: "Last Name", dataField: 'lastName' },
+  { text: "EMI ID", dataField: 'emiID' },
+  { text: "JYS ID", dataField: 'jysID' },
+  { text: "User Access #", dataField: 'userJYSNumber' },
+  { text: "SQL Login GUID", dataField: 'sqlLogin' },
+  { text: "User Login", dataField: 'userLogin' },
+  { text: "EMI Dupes", dataField: 'emiDuplicates' }
+];

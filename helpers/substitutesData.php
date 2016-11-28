@@ -6,7 +6,7 @@
  * Time: 12:50 PM
  */
 
-require_once ("../dbFunctions.php");
+require_once("dbFunctions.php");
 
 echo runSQL(
     "SELECT p.ProgramKey, Name = (e.LastName + ', ' + e.FirstName), progs.Description as Program, pos.Description as Position, "
@@ -14,4 +14,4 @@ echo runSQL(
     . "inner join (select JYSCode, Description from hr.CodexRef where CodeType='HrProgram') progs "
     . "on progs.JYSCode=p.DepartmentKey inner join (select JYSCode, Description from HR.CodexRef "
     . "where CodeType='HrPosition') pos on pos.JYSCode=p.PositionKey order by p.StartDate desc"
-  , null);
+  , null, getConnection());

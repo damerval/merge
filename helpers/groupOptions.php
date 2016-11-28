@@ -6,10 +6,10 @@
  * Time: 4:57 PM
  */
 
-require_once ("../dbFunctions.php");
+require_once("dbFunctions.php");
 
 echo runSQL("
   SELECT
     group_name gName, group_description gDesc
   from hr.groups
-", null);
+", null, getConnection());

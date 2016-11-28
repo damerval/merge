@@ -44,10 +44,32 @@ $(document).ready( function() {
 
   var individualPermissionsGrid = $("#individualPermissionsGrid");
   individualPermissionsGrid.jqxGrid({
-    width: 728, height: 446, theme: 'jys', altrows: true, columnsHeight: 18,
+    width: 628, height: 446, theme: 'jys', altrows: true, columnsHeight: 18,
     source: individualAdapter,
     columns: individualColumns,
     sortable: true
   });
+
+  var pnlIndividualPermissionsButtons = $("#individualPermissionsButtonBar");
+  pnlIndividualPermissionsButtons.jqxPanel({ width: 620, height: 30, theme: 'jys' });
+
+  var btnNewIndividualPermission = $("#addIndividualPermissionButton").jqxButton({ width: 150, theme: 'jys '});
+  var btnEditIndividualPermission = $("#editIndividualPermissionButton").jqxButton({ width: 150, theme: 'jys '});
+  var btnDeleteIndividualPermission = $("#deleteIndividualPermissionButton").jqxButton({ width: 150, theme: 'jys '});
+
+  var exclusionsGrid = $("#exclusionsGrid");
+  exclusionsGrid.jqxGrid({
+    width: 628, height: 446, theme: 'jys', altrows: true, columnsHeight: 18,
+    source: exclusionsAdapter,
+    columns: exclusionsColumns,
+    sortable: true
+  });
+
+  var pnlExclusionsButtons = $("#exclusionsButtonBar");
+  pnlExclusionsButtons.jqxPanel({ width: 620, height: 30, theme: 'jys' });
+
+  var btnNewExclusion = $("#addExclusionButton").jqxButton({ width: 150, theme: 'jys' });
+  var btnEditExclusion = $("#editExclusionButton").jqxButton({ width: 150, theme: 'jys' });
+  var btnDeleteExclusion = $("#deleteExclusionButton").jqxButton({ width: 150, theme: 'jys' });
 
 });

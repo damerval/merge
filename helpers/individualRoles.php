@@ -6,7 +6,7 @@
  * Time: 9:51 PM
  */
 
-require_once ("../dbFunctions.php");
+require_once("dbFunctions.php");
 
 echo runSQL("
   SELECT
@@ -16,4 +16,4 @@ echo runSQL("
     ug.start_date startDate,
     ug.end_date endDate
   from HR.user_groups ug
-", null);
+", null, getConnection());

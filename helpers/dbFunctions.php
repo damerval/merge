@@ -12,6 +12,12 @@ function getConnection() {
   return sqlsrv_connect($settings['host'], $params);
 }
 
+function getAuthConnection() {
+  $settings = parse_ini_file($_SERVER['DOCUMENT_ROOT'] . '/merge/dbSettings_auth.ini');
+  $params = array('Database'=>$settings['dbName'], 'UID'=>$settings['userName'], 'PWD'=>$settings['password']);
+  return sqlsrv_connect($settings['host'], $params);
+}
+
 function getPermissionSQL($userNum, $widgetName) {
   $return = "";
   $conn = getConnection();
@@ -34,11 +40,12 @@ function getPermissionSQL($userNum, $widgetName) {
   return $return;
 }
 
-function runSQL($sql, $params) {
+function runSQL($sql, $params, $connection) {
   $return = "[]";
   
+  $conn = isset($connection) ? $connection : getConnection();
+  
   if (!$sql == "") {
-    $conn = getConnection();
     if ($conn) {
       $stmt = sqlsrv_query($conn, $sql, $params);
       $rows = array();

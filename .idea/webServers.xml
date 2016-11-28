@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="fb167fe4-dc9f-4493-922f-ecd79d1d29a2" name="bluewww-merge" url="http://blue/merge">
+        <fileTransfer host="blue" port="21" rootFolder="/wamp/www/merge">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

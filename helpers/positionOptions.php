@@ -6,7 +6,7 @@
  * Time: 11:17 PM
  */
 
-require_once ("../dbFunctions.php");
+require_once("dbFunctions.php");
 
 echo runSQL("
   SELECT DISTINCT * FROM (SELECT distinct
@@ -19,5 +19,5 @@ echo runSQL("
   FROM HR.CodexRef xr
   WHERE xr.CodeType='HrPosition') tunion
   order by [desc] 
-", null
+", null, getConnection()
 );

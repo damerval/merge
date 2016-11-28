@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="dbSrc:///4b3dba30/97e44906-cfc7-4fc7-a50d-78c702e67970" dialect="TSQL" />
+    <file url="dbSrc:///4b3dba30/a9457958-9363-424c-93ef-45662c1897c3" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/helpers" dialect="TSQL" />
+  </component>
+</project>
