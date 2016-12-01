@@ -44,10 +44,10 @@ body {
 #headerTitle { position: absolute; left: 140px; top: 30px }
 .titleText { font-size: 24pt; font-weight: bold }
 #substituteGrid, #positionPermissionsGrid, #individualPermissionsGrid,
-  #exclusionsGrid { margin: 0 5px 5px 5px }
+  #exclusionsGrid, #userAccessGrid { margin: 0 5px 5px 5px }
 .jqx-grid-column-header-jys { font-size: 9px !important }
 #substitutesButtonBar, #positionPermissionsButtonBar, #individualPermissionsButtonBar,
-#exclusionsButtonBar {
+#exclusionsButtonBar, #userAccessButtonBar {
   margin-left: 6px; margin-top: 3px;
   padding-top: 6px; padding-left: 6px;
   border-color: #B2D0B2
