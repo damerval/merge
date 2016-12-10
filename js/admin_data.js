@@ -109,15 +109,15 @@ var userAccessSource = {
 };
 
 var userAccessColumns = [
-  {text: "HR ID", dataField: 'hrID', width: 50},
-  {text: "First Name", dataField: 'firstName'},
-  {text: "Last Name", dataField: 'lastName'},
-  {text: "EMI ID", dataField: 'emiID'},
-  {text: "JYS ID", dataField: 'jysID'},
-  {text: "User Access #", dataField: 'userJYSNumber'},
-  {text: "SQL Login GUID", dataField: 'sqlLogin'},
-  {text: "User Login", dataField: 'userLogin'},
-  {text: "EMI Dupes", dataField: 'emiDuplicates'}
+  {text: "HR ID", dataField: 'hrID', width: 40, cellsAlign: 'middle' },
+  {text: "First Name", dataField: 'firstName', width: 150 },
+  {text: "Last Name", dataField: 'lastName', width: 150 },
+  {text: "EMI ID", dataField: 'emiID', width: 40, cellsAlign: 'middle' },
+  {text: "JYS ID", dataField: 'jysID', width: 40, cellsAlign: 'middle' },
+  {text: "User Access #", dataField: 'userJYSNumber', width: 70, cellsAlign: 'middle' },
+  {text: "SQL Login GUID", dataField: 'sqlLogin', width: 249 },
+  {text: "User Login", dataField: 'userLogin', width: 85 },
+  {text: "EMI Dupes", dataField: 'emiDuplicates', width: 60, cellsAlign: 'middle' }
 ];
 
 var userAccessAdapter = new $.jqx.dataAdapter(userAccessSource);
