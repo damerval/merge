@@ -15,5 +15,5 @@ echo runSQL("
     clientID cid,
     startDate \"exStart\",
     endDate \"exEnd\"
-  from HR.client_exclusions
-", null);
+  from client_exclusions
+", null, getAuthConnection());

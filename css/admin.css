@@ -41,14 +41,60 @@ body {
 }
 
 #logo { margin-left: 20px }
+
 #headerTitle { position: absolute; left: 140px; top: 30px }
+
 .titleText { font-size: 24pt; font-weight: bold }
+
 #substituteGrid, #positionPermissionsGrid, #individualPermissionsGrid,
   #exclusionsGrid, #userAccessGrid { margin: 0 5px 5px 5px }
+
 .jqx-grid-column-header-jys { font-size: 9px !important }
+
 #substitutesButtonBar, #positionPermissionsButtonBar, #individualPermissionsButtonBar,
 #exclusionsButtonBar, #userAccessButtonBar {
   margin-left: 6px; margin-top: 3px;
   padding-top: 6px; padding-left: 6px;
   border-color: #B2D0B2
 }
+
+.one { width: 1% }
+.two { width: 2% }
+.three { width: 3% }
+.four { width: 4% }
+.five { width: 5% }
+.ten { width: 10% }
+.fifteen { width: 15% }
+.twenty { width: 17% }
+.twentyFive { width: 25% }
+.thirty { width: 30% }
+.thirtyFive { width: 35% }
+.forty { width: 40% }
+.fortyFive { width: 45% }
+.fifty { width: 50% }
+.fiftyFive { width: 55% }
+.sixty { width: 60% }
+.sixtyFive { width: 65% }
+.seventy { width: 70% }
+.seventyFive { width: 75% }
+.eighty { width: 80% }
+.eightyFive { width: 85% }
+.ninety { width: 90% }
+.ninetyFive { width: 95% }
+.fullWidth { width: 100% }
+
+.floatBreak { float: none;  clear: both; height: 0 }
+
+.lbl {  }
+.fld {  }
+
+.contentFrame {margin-left: 2%; margin-top: 2% }
+
+.formCell { height: 30px; float: left }
+
+.buttonRow { height: 30px; width: 100%; margin-top: 15px }
+
+.leftButton { float: left }
+.rightButton { float: right }
+
+.lbl { line-height: 22px }

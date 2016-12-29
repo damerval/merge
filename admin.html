@@ -24,11 +24,18 @@
   <script type="text/javascript" src="lib/jqwidgets/jqxgrid.sort.js"></script>
   <script type="text/javascript" src="lib/jqwidgets/jqxgrid.pager.js"></script>
   <script type="text/javascript" src="lib/jqwidgets/jqxpanel.js"></script>
+  <script type="text/javascript" src="lib/jqwidgets/jqxwindow.js"></script>
+  <script type="text/javascript" src="lib/jqwidgets/jqxdatetimeinput.js"></script>
+  <script type="text/javascript" src="lib/jqwidgets/jqxcalendar.js"></script>
+  <script type="text/javascript" src="lib/jqwidgets/globalization/globalize.js"></script>
 
 <!----------------------------------------Code-behind------------------------------------------------------------------>
 
+  <script type="text/javascript" src="js/admin_functions.js"></script>
+  <script type="text/javascript" src="activeClients.js"></script>
   <script type="text/javascript" src="js/admin_data.js"></script>
   <script type="text/javascript" src="js/admin_widgets.js"></script>
+  <script type="text/javascript" src="js/admin_events.js"></script>
   <script type="text/javascript" language="javascript">
 
     $(document).ready(function() {
@@ -43,6 +50,18 @@
         }
       });
       */
+      var testButton = $("#btnTest").jqxButton({ width: 75, height: 21, theme: 'jys' });
+      testButton.on('click', function() {
+        $.post('helpers/saveExclusion.php',
+            { employeeId: 989, clientId: 3675, startDate: new Date(), endDate: new Date() + 30, userId: 600 },
+            function (data) {
+              alert(data);
+            })
+            .fail(function (jqXHR) {
+              alert(jqXHR.toString())
+            });
+        alert('Test button clicked');
+      });
 
     });
 
@@ -56,7 +75,9 @@
 
     <div id="header">
       <img src="images/jysLogoNew.gif" height="100px" width="100px" id="logo">
-      <div id="headerTitle"><span class="titleText">Permissions administration</span></div>
+      <div id="headerTitle"><span class="titleText">Permissions administration</span>
+        <button type="button" id="btnTest"> Test </button>
+      </div>
     </div>
 
     <div id="middle">
@@ -114,7 +135,32 @@
     </div>
 
     <div id="footer">
+    </div>
 
+    <!-- Client Exclusions Window -->
+    <div id="clientExclusionsWindow">
+      <div id="cewTitle"> Client exclusions </div>
+      <div id="cewContent">
+        <div class="ninetyFive contentFrame">
+          <div class="formCell thirty"><span class="lbl"> Employee: </span></div>
+          <div id="cewEmployee" class="formCell seventy"></div>
+          <br class="floatBreak"/>
+          <div class="formCell thirty"><span class="lbl"> Client: </span></div>
+          <div id="cewClient" class="formCell seventy"></div>
+          <br class="floatBreak"/>
+          <div class="formCell thirty"><span class="lbl"> Start Date: </span></div>
+          <div id="cewStartDate" class="formCell seventy"></div>
+          <br class="floatBreak"/>
+          <div class="formCell thirty"><span class="lbl"> End Date: </span></div>
+          <div id="cewEndDate" class="formCell seventy"></div>
+          <br class="floatBreak"/>
+          <div class="buttonRow">
+            <button type="button" id="cewOK" class="leftButton"> Save </button>
+            <button type="button" id="cewCancel" class="rightButton"> Cancel </button>
+            <br class="floatBreak"/>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>

@@ -87,4 +87,29 @@ $(document).ready( function() {
   btnResetPassword = $("#resetPasswordButton").jqxButton({ width: 150, theme: 'jys' });
   btnEMIwindow = $("#EMIButton").jqxButton({ width: 150, theme: 'jys' });
 
+  btnCewOK = $("#cewOK").jqxButton({ width: 75, theme: 'jys' });
+  btnCewCancel = $("#cewCancel").jqxButton({ width: 75, theme: 'jys' });
+
+  clientExclusionDetailWindow = $("#clientExclusionsWindow").jqxWindow({
+    width: 240, height: 205, theme: 'jys', autoOpen: false, isModal: true,
+    okButton: btnCewOK, cancelButton: btnCewCancel
+  });
+
+  cewEmployee = $("#cewEmployee").jqxDropDownList({
+    width: 150, height: 21, theme: 'jys', dropDownWidth: 200,
+    source: activeEmployeesAdapter, valueMember: 'uid', displayMember: 'employeeFullName'
+  });
+
+  cewClient = $("#cewClient").jqxDropDownList({
+    width: 150, height: 21, theme: 'jys', dropDownWidth: 375,
+    source: activeClientsAdapter, valueMember: 'uid', displayMember: 'clientFullName'
+  });
+
+  cewStartDate = $("#cewStartDate").jqxDateTimeInput({
+    width: 150, height: 21, theme: 'jys'
+  });
+
+  cewEndDate = $("#cewEndDate").jqxDateTimeInput({
+    width: 150, height: 21, theme: 'jys'
+  });
 });
