@@ -10,6 +10,7 @@
   <link type="text/css" rel="stylesheet" href="css/jqx.jys.css">
   <link type="text/css" rel="stylesheet" href="css/admin.css">
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
   <script type="text/javascript" src="lib/jqwidgets/jqxcore.js"></script>
   <script type="text/javascript" src="lib/jqwidgets/jqxtabs.js"></script>
   <script type="text/javascript" src="lib/jqwidgets/jqxgrid.js"></script>
@@ -53,14 +54,21 @@
       var testButton = $("#btnTest").jqxButton({ width: 75, height: 21, theme: 'jys' });
       testButton.on('click', function() {
         $.post('helpers/saveExclusion.php',
-            { employeeId: 989, clientId: 3675, startDate: new Date(), endDate: new Date() + 30, userId: 600 },
-            function (data) {
-              alert(data);
-            })
-            .fail(function (jqXHR) {
-              alert(jqXHR.toString())
-            });
-        alert('Test button clicked');
+          {
+            employeeId: 989,
+            clientId: 3675,
+            startDate: Date.today().setTimeToNow().toString('yyyy-MM-dd hh:mm:ss'),
+            endDate: Date.today().setTimeToNow().addDays(30).toString('yyyy-MM-dd hh:mm:ss'),
+            userId: 600
+          },
+          function (data) {
+            alert(data);
+          })
+          .fail(function (jqXHR) {
+            alert(jqXHR.toString())
+          }
+        );
+        alert(Date.today().setTimeToNow().addDays(30).toString('dd-MMM-yyyy hh:mm:ss'));
       });
 
     });

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Buttons page</title>
+  <!----------------------------------------Declarations, imports and links-------------------------------------------->
+  <link rel="stylesheet" type="text/css" href="jqwidgets/styles/jqx.base.css">
+  <link rel="stylesheet" type="text/css" href="css/jqx.jys.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
+  <script type="text/javascript" src="jqwidgets/jqxbuttons.js"></script>
+  <!----------------------------------------Local Styles--------------------------------------------------------------->
+  <!----------------------------------------Code-behind---------------------------------------------------------------->
+  <script type="text/javascript" language="javascript">
+
+    $(document).ready(function() {
+
+      var btnLaunchGrids = $("#launchGrids");
+      btnLaunchGrids.jqxButton({ width: 75, theme: 'jys' });
+      btnLaunchGrids.on('click', function() {
+        window.location.href = "grids.html";
+      });
+
+      var btnLaunchAdmin = $("#launchAdmin");
+      btnLaunchAdmin.jqxButton({ width: 115, theme: 'jys' });
+
+    });
+
+  </script>
+</head>
+<!--==============================================  BODY  ===========================================================-->
+<body>
+  <input type="button" id="launchGrids" value="To Grids">
+  <input type="button" id="launchAdmin" value="To Admin page">
+</body>
+
+</html>

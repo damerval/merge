@@ -2,6 +2,8 @@
  * Created by philippe on 10/7/16.
  */
 
+var currentUser = 600;
+
 var substitutesGridSource = {
   url: 'helpers/substitutesData.php',
   dataFields: [
@@ -73,6 +75,7 @@ var exclusionsSource = {
   url: "helpers/exclusions.php",
   dataType: 'json',
   dataFields: [
+    {name: 'uid', type: 'int'},
     {name: 'eid', type: 'int'},
     {name: 'cid', type: 'int'},
     {name: 'exStart', map: 'exStart>date', type: 'date'},
@@ -89,6 +92,8 @@ var exclusionsColumns = [
 ];
 
 var exclusionsAdapter = new $.jqx.dataAdapter(exclusionsSource);
+
+var exclusionsGrid;
 
 var userAccessSource = {
   url: "helpers/userAccess.php",

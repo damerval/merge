@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grids</title>
+  <link rel="stylesheet" type="text/css" href="jqwidgets/styles/jqx.base.css">
+  <link rel="stylesheet" type="text/css" href="jqwidgets/styles/jqx.metro.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
+  <script type="text/javascript" src="jqwidgets/jqxdata.js"></script>
+  <script type="text/javascript" src="jqwidgets/jqxbuttons.js"></script>
+  <script type="text/javascript" src="jqwidgets/jqxscrollbar.js"></script>
+  <script type="text/javascript" src="jqwidgets/jqxmenu.js"></script>
+  <script type="text/javascript" src="jqwidgets/jqxlistbox.js"></script>
+  <script type="text/javascript" src="jqwidgets/jqxdropdownlist.js"></script>
+  <script type="text/javascript" src="jqwidgets/jqxdatatable.js"></script>
+  <script type="text/javascript" src="jqwidgets/jqxgrid.js"></script>
+  <script type="text/javascript" src="jqwidgets/jqxgrid.selection.js"></script>
+  <script type="text/javascript" src="jqwidgets/jqxgrid.columnsresize.js"></script>
+  <script type="text/javascript" src="jqwidgets/jqxgrid.filter.js"></script>
+  <script type="text/javascript" src="jqwidgets/jqxgrid.sort.js"></script>
+  <script type="text/javascript" src="jqwidgets/jqxgrid.pager.js"></script>
+  <script type="text/javascript" src="jqwidgets/jqxgrid.grouping.js"></script>
+
+  <script type="text/javascript" language="javascript">
+
+    $(document).ready(function () {
+
+      var ctl_client_hist_grid = $("#client_hist_grid");
+      var client_hist_source = {
+        url: "client_data.php?widget_name=sample_client_hist_grid&client_id=3117",
+        dataType: "json",
+        dataFields: [
+          { name: 'SerialNum', type: 'int' },
+          { name: 'CLIENT_ID', type: 'int' },
+          { name: 'DATE', map: 'DATE>date', type: 'date' },
+          { name: 'EndDate', map: 'EndDate>date', type: 'date' },
+          { name: 'PROGRAM' },
+          { name: 'Description' }
+        ],
+        id: 'SerialNum'
+      };
+      var client_hist_adapter = new $.jqx.dataAdapter(client_hist_source);
+      ctl_client_hist_grid.jqxGrid({
+        width: 410, height: 538, theme: 'metro', rowsHeight: 24, columnsHeight: 22,
+        source: client_hist_adapter,
+        columns: [
+          { text: "Description", dataField: 'Description', width: 140 },
+          { text: "Program", dataField: 'PROGRAM', width: 120 },
+          { text: "Start Date", dataField: 'DATE', cellsFormat: 'MM/dd/yyyy', width: 75 },
+          { text: "End Date", dataField: 'EndDate', cellsFormat: 'MM/dd/yyyy', width: 75 }
+        ],
+        pageable: true,
+        pageSize: 20,
+        pagerMode: 'simple',
+        sortable: true
+      });
+
+      var ctl_client_services_grid = $("#client_services_grid");
+      var client_services_source = {
+        url: "client_data.php?widget_name=sample_service_grid&client_id=3117",
+        dataType: 'json',
+        dataFields: [
+          { name: 'EOCs', type: 'int' },
+          { name: 'PROGRAM' },
+          { name: 'PROJECT' },
+          { name: 'SERVICE_TYPE' },
+          { name: 'DURATION', type: 'int' },
+          { name: 'WKST' },
+          { name: 'WKND' },
+          { name: 'datesort' }
+        ]
+      };
+      var client_services_adapter = new $.jqx.dataAdapter(client_services_source);
+      ctl_client_services_grid.jqxGrid({
+        width: 800, height: 538, theme: 'metro', rowsHeight: 24, columnsHeight: 22,
+        source: client_services_adapter,
+        columns: [
+          { text: "EOC's", dataField: 'EOCs', width: 50 },
+          { text: "Program", dataField: 'PROGRAM', width: 100 },
+          { text: "Project", dataField: 'PROJECT', width: 100 },
+          { text: "Service", dataField: 'SERVICE_TYPE', width: 320 },
+          { text: "Duration", dataField: 'DURATION', width: 70 },
+          { text: "Week Start", dataField: 'WKST', width: 80 },
+          { text: "Week End", dataField: 'WKND', width: 80 }
+        ],
+        pageable: true,
+        pageSize: 20,
+        pagerMode: 'simple',
+        sortable: true
+      });
+
+      var ctl_client_id = $("#sel_client_id");
+      ctl_client_id.on('change', function() {
+        client_hist_source.url = "client_data.php?widget_name=sample_client_hist_grid&client_id=" + ctl_client_id.val();
+        ctl_client_hist_grid.jqxGrid('updatebounddata');
+        client_services_source.url = "client_data.php?widget_name=sample_service_grid&client_id=" + ctl_client_id.val();
+        ctl_client_services_grid.jqxGrid('updatebounddata');
+      });
+
+    });
+
+  </script>
+
+  <style type="text/css">
+    #client_hist_grid { margin-bottom: 10px; float: left; clear: left }
+    #grid_row { float: none; clear: both; }
+    #client_services_grid { margin-bottom: 10px; margin-left: 20px; float: left; clear: right }
+  </style>
+</head>
+
+<body>
+
+  <div style="margin-bottom: 20px">
+    <select id="sel_client_id" title="Choose Client ID">
+      <option value="3117" selected>3117</option>
+      <option value="3530">3530</option>
+      <option value="4016">4016</option>
+      <option value="5552">5552</option>
+      <option value="2916">2916</option>
+    </select>
+  </div>
+  <div id="client_hist_grid"></div>
+  <div id="client_services_grid"></div>
+  <div id="grid_row"></div>
+
+  <div><a title="Return to login" href="login.php">Return to Login</a> </div>
+</body>
+
+</html>

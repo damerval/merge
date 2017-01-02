@@ -57,7 +57,7 @@ $(document).ready( function() {
   btnEditIndividualPermission = $("#editIndividualPermissionButton").jqxButton({ width: 150, theme: 'jys' });
   btnDeleteIndividualPermission = $("#deleteIndividualPermissionButton").jqxButton({ width: 150, theme: 'jys' });
 
-  var exclusionsGrid = $("#exclusionsGrid");
+  exclusionsGrid = $("#exclusionsGrid");
   exclusionsGrid.jqxGrid({
     width: 628, height: 446, theme: 'jys', altrows: true, columnsHeight: 18,
     source: exclusionsAdapter,
@@ -69,8 +69,8 @@ $(document).ready( function() {
   pnlExclusionsButtons.jqxPanel({ width: 620, height: 30, theme: 'jys' });
 
   btnNewExclusion = $("#addExclusionButton").jqxButton({ width: 150, theme: 'jys' });
-  btnEditExclusion = $("#editExclusionButton").jqxButton({ width: 150, theme: 'jys' });
-  btnDeleteExclusion = $("#deleteExclusionButton").jqxButton({ width: 150, theme: 'jys' });
+  btnEditExclusion = $("#editExclusionButton").jqxButton({ width: 150, theme: 'jys', disabled: true });
+  btnDeleteExclusion = $("#deleteExclusionButton").jqxButton({ width: 150, theme: 'jys', disabled: true });
 
   var pnlUserAccessButtons = $("#userAccessButtonBar");
   pnlUserAccessButtons.jqxPanel({ width: 876, height: 30, theme: 'jys' });
@@ -87,7 +87,7 @@ $(document).ready( function() {
   btnResetPassword = $("#resetPasswordButton").jqxButton({ width: 150, theme: 'jys' });
   btnEMIwindow = $("#EMIButton").jqxButton({ width: 150, theme: 'jys' });
 
-  btnCewOK = $("#cewOK").jqxButton({ width: 75, theme: 'jys' });
+  btnCewOK = $("#cewOK").jqxButton({ width: 75, theme: 'jys', disabled: true });
   btnCewCancel = $("#cewCancel").jqxButton({ width: 75, theme: 'jys' });
 
   clientExclusionDetailWindow = $("#clientExclusionsWindow").jqxWindow({
@@ -110,6 +110,6 @@ $(document).ready( function() {
   });
 
   cewEndDate = $("#cewEndDate").jqxDateTimeInput({
-    width: 150, height: 21, theme: 'jys'
+    width: 150, height: 21, theme: 'jys', value: null
   });
 });

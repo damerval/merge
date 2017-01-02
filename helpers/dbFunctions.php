@@ -93,9 +93,13 @@ function runInsertSQL($sql, $params, $connection, $key) {
     $conn = isset($connection) ? $connection : getConnection();
     if ($conn) {
       $stmt = sqlsrv_query($conn, $sql, $params);
+      error_log('Statement was successful');
       if ($stmt) {
+        error_log('Statement is true');
         if (sqlsrv_next_result($stmt)) {
+          error_log('Next result successful');
           $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+          error_log('The inserted key is ' . $row[$key]);
           $return = $row[$key];
         }
       } else {
@@ -105,5 +109,32 @@ function runInsertSQL($sql, $params, $connection, $key) {
     } else return DB_ERROR_NO_CONNECTION;
   } else return DB_ERROR_BAD_CONTRACT;
   
+  return $return;
+}
+
+function runUpdateSQL($sql, $params, $connection, $key) {
+  $return = 0;
+  error_log('Entering updateSQL');
+
+  if (!$sql == "") {
+    $conn = isset($connection) ? $connection : getConnection();
+    if ($conn) {
+      $stmt = sqlsrv_query($conn, $sql, $params);
+      error_log('Statement was successful');
+      if ($stmt) {
+        error_log('Statement is true');
+        if (sqlsrv_next_result($stmt)) {
+          error_log('Next result successful');
+          $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+          error_log('The updated key is ' . $row[$key]);
+          $return = $row[$key];
+        }
+      } else {
+        error_log(print_r(sqlsrv_errors(), true));
+        return DB_ERROR_STMT_FAIL;
+      }
+    } else return DB_ERROR_NO_CONNECTION;
+  } else return DB_ERROR_BAD_CONTRACT;
+
   return $return;
 }
