@@ -127,6 +127,11 @@ var individualAdapter = new $.jqx.dataAdapter({
       name: 'employeeFullName' }
     },
     {name: 'grp', type: 'string'},
+    {name: 'groupName', value: 'grp', values: {
+      source: groupsAdapter.records,
+      value: 'gn',
+      name: 'gd' }
+    },
     {name: 'startDate', map: 'startDate>date', type: 'date'},
     {name: 'endDate', map: 'endDate>date', type: 'date'}
   ],
@@ -134,10 +139,10 @@ var individualAdapter = new $.jqx.dataAdapter({
 });
 
 var individualColumns = [
-  {text: 'User Name', dataField: 'userNum', displayField: 'employee'},
-  {text: 'Group', dataField: 'grp', displayField: 'group'},
-  {text: 'startDate', dataField: 'startDate', cellsFormat: 'MM/dd/yyyy'},
-  {text: 'endDate', dataField: 'endDate', cellsFormat: 'MM/dd/yyyy'}
+  {text: 'User Name', dataField: 'userNum', displayField: 'employee', width: 200},
+  {text: 'Group', dataField: 'grp', displayField: 'groupName', width: 277 },
+  {text: 'Start Date', dataField: 'startDate', cellsFormat: 'MM/dd/yyyy', width: 75 },
+  {text: 'End Date', dataField: 'endDate', cellsFormat: 'MM/dd/yyyy', width: 75}
 ];
 
 var individualPermissionsGrid;
