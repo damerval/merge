@@ -50,22 +50,23 @@
           $("#test2").html(jqXHR.responseText);
         }
       });
-      */
+       */
       var testButton = $("#btnTest").jqxButton({ width: 75, height: 21, theme: 'jys' });
       testButton.on('click', function() {
-        $.post('helpers/saveExclusion.php',
+        $.post('helpers/saveUserGroup.php',
           {
             employeeId: 989,
-            clientId: 3675,
+            groupName: 'View1',
             startDate: Date.today().setTimeToNow().toString('yyyy-MM-dd hh:mm:ss'),
             endDate: Date.today().setTimeToNow().addDays(30).toString('yyyy-MM-dd hh:mm:ss'),
-            userId: 600
+            userId: 600,
+            editMode: 'insert'
           },
           function (data) {
             alert(data);
           })
           .fail(function (jqXHR) {
-            alert(jqXHR.toString())
+            alert(jqXHR.toString());
           }
         );
         alert(Date.today().setTimeToNow().addDays(30).toString('dd-MMM-yyyy hh:mm:ss'));
@@ -84,7 +85,9 @@
     <div id="header">
       <img src="images/jysLogoNew.gif" height="100px" width="100px" id="logo">
       <div id="headerTitle"><span class="titleText">Permissions administration</span>
+
         <button type="button" id="btnTest"> Test </button>
+
       </div>
     </div>
 

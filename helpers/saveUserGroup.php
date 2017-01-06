@@ -13,23 +13,22 @@ error_log('endDate is ' . ((null == $_POST['endDate']) ? '' : 'not ') . 'null');
 error_log('endDate is ' . (('' === $_POST['endDate']) ? '' : 'not ') . 'empty');
 
 $employeeId = $_POST['employeeId'];
-$clientId = $_POST['clientId'];
+$groupName = $_POST['groupName'];
 $startDate = $_POST['startDate'];
 $endDate = (null != $_POST['endDate']) ? $_POST['endDate'] : null;
-$createdBy = $_POST['createdBy'];
-$updatedBy = $_POST['updatedBy'];
+$createdBy = $_POST['userId'];
 $editMode = $_POST['editMode'];
-$key = $_POST['clientExclusionID'];
+$key = $_POST['userGroupId'];
 
 error_log($startDate);
 error_log($endDate);
 
 if ($editMode == 'insert') {
-  $insertParams = array($employeeId, $clientId, $startDate, $endDate, $createdBy);
+  $insertParams = array($employeeId, $groupName, $startDate, $endDate, $createdBy);
   echo runInsertSQL("
-      INSERT INTO client_exclusions(employeeID, clientID, startDate, endDate, createdBy, createdOn) 
+      INSERT INTO user_groups(user_number, group_name, start_date, end_date, createdBy, createdOn) 
       VALUES (?, ? ,?, ?, ?, getDate())"
-      , $insertParams, getAuthConnection(), 'clientExclusionID');
+      , $insertParams, getAuthConnection(), 'user_group_id');
 } else if ($editMode == 'update') {
   $updateParams = array($employeeId, $clientId, $startDate, $endDate, $updatedBy);
   echo runUpdateSQL("

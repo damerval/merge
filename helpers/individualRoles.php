@@ -15,5 +15,5 @@ echo runSQL("
     ug.group_name grp,
     ug.start_date startDate,
     ug.end_date endDate
-  from HR.user_groups ug
-", null, getConnection());
+  from user_groups ug
+", null, getAuthConnection());

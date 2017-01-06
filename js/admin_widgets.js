@@ -6,12 +6,12 @@ $(document).ready( function() {
 
   var substitutesGrid = $("#substituteGrid");
   substitutesGrid.jqxGrid({
-    width: 885, height: 446, theme: 'jys', columnsheight: 18, altrows: true,
+    width: 885, height: 446, theme: 'jys', columnsHeight: 18, altrows: true,
     source: substituteGridAdapter,
     columns: substitutesColumns,
     sortable: true,
     pageable: true,
-    pagermode: 'simple'
+    pagerMode: 'simple'
   });
 
   var tabs = $("#tabs");
@@ -42,8 +42,7 @@ $(document).ready( function() {
     pagerMode: 'simple'
   });
 
-  var individualPermissionsGrid = $("#individualPermissionsGrid");
-  individualPermissionsGrid.jqxGrid({
+  individualPermissionsGrid = $("#individualPermissionsGrid").jqxGrid({
     width: 628, height: 446, theme: 'jys', altrows: true, columnsHeight: 18,
     source: individualAdapter,
     columns: individualColumns,
@@ -85,7 +84,7 @@ $(document).ready( function() {
   btnGrantUserAccess = $("#grantAccessButton").jqxButton({ width: 150, theme: 'jys' });
   btnDenyUserAccess = $("#denyAccessButton").jqxButton({ width: 150, theme: 'jys' });
   btnResetPassword = $("#resetPasswordButton").jqxButton({ width: 150, theme: 'jys' });
-  btnEMIwindow = $("#EMIButton").jqxButton({ width: 150, theme: 'jys' });
+  btnEMIWindow = $("#EMIButton").jqxButton({ width: 150, theme: 'jys' });
 
   btnCewOK = $("#cewOK").jqxButton({ width: 75, theme: 'jys', disabled: true });
   btnCewCancel = $("#cewCancel").jqxButton({ width: 75, theme: 'jys' });

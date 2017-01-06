@@ -21,7 +21,6 @@ $(document).ready(function () {
 
   btnCewOK.on('click', function() {
     var nullEndDate = cewEndDate.val() === '';
-    alert(clientExclusionDetailWindow['editMode']);
     $.post('helpers/saveExclusion.php',
         {
           employeeId: cewEmployee.val(),
@@ -51,6 +50,21 @@ $(document).ready(function () {
     loadExclusionsDialog(obj['eid'], obj['cid'], obj['exStart'], obj['exEnd']);
     clientExclusionDetailWindow.jqxWindow('open');
     clientExclusionDetailWindow['editMode'] = 'update';
+  });
+
+  btnDeleteExclusion.on('click', function() {
+    var obj = exclusionsGrid.jqxGrid('getrowdata', exclusionsGrid.jqxGrid('getselectedrowindex'));
+    $.post('helpers/saveExclusion.php',
+        {
+          clientExclusionID: obj['uid'],
+          editMode: 'delete'
+        },
+        function() {
+          exclusionsGrid.jqxGrid('updatebounddata');
+        }
+    ).fail(function (jqXHR) {
+      alert(jqXHR.toString());
+    });
   });
 
 });

@@ -16,7 +16,7 @@ var substitutesGridSource = {
   ],
   dataType: 'json',
   id: 'ProgramKey',
-  pagesize: 14
+  pageSize: 14
 };
 
 var substituteGridAdapter = new $.jqx.dataAdapter(substitutesGridSource);
@@ -50,26 +50,37 @@ var jobClassRolesColumns = [
   {text: "Permissions group", dataField: 'grp', width: 200}
 ];
 
-var individualSource = {
-  url: "helpers/individualRoles.php",
+var activeEmployeesAdapter = new $.jqx.dataAdapter({
+  url: "helpers/activeEmployees.php",
   dataType: 'json',
   dataFields: [
-    {name: 'userNum', type: 'int'},
-    {name: 'grp', type: 'string'},
-    {name: 'startDate', map: 'startDate>date', type: 'date'},
-    {name: 'endDate', map: 'endDate>date', type: 'date'}
+    { name: 'uid', type: 'int' },
+    { name: 'employeeFullName', map: 'en', type: 'string' }
   ],
-  id: 'ugId'
-};
+  id: 'uid',
+  async: false
+}, { autoBind: true });
 
-var individualColumns = [
-  {text: 'User Name', dataField: 'userNum'},
-  {text: 'Group', dataField: 'grp'},
-  {text: 'startDate', dataField: 'startDate', cellsFormat: 'MM/dd/yyyy'},
-  {text: 'endDate', dataField: 'endDate', cellsFormat: 'MM/dd/yyyy'}
-];
+var activeClientsAdapter = new $.jqx.dataAdapter({
+  localData: activeClientsStatic,
+  dataType: 'json',
+  dataFields: [
+    { name: 'uid', type: 'int' },
+    { name: 'clientFullName', map: 'cf', type: 'string' }
+  ],
+  id: 'uid'
+}, { autoBind: true });
 
-var individualAdapter = new $.jqx.dataAdapter(individualSource);
+var groupsAdapter = new $.jqx.dataAdapter({
+  url: 'helpers/groups.php',
+  dataType: 'json',
+  dataFields: [
+    { name: 'gn', type: 'string' },
+    { name: 'gd', type: 'string' }
+  ],
+  id: 'gn',
+  async: false
+}, { autoBind: true });
 
 var exclusionsSource = {
   url: "helpers/exclusions.php",
@@ -77,7 +88,17 @@ var exclusionsSource = {
   dataFields: [
     {name: 'uid', type: 'int'},
     {name: 'eid', type: 'int'},
+    {name: 'employee', value: 'eid', values: {
+        source: activeEmployeesAdapter.records,
+        value: 'uid',
+        name: 'employeeFullName' }
+    },
     {name: 'cid', type: 'int'},
+    {name: 'client', value: 'cid', values: {
+      source: activeClientsAdapter.records,
+      value: 'uid',
+      name: 'clientFullName' }
+    },
     {name: 'exStart', map: 'exStart>date', type: 'date'},
     {name: 'exEnd', map: 'exEnd>date', type: 'date'}
   ],
@@ -85,15 +106,41 @@ var exclusionsSource = {
 };
 
 var exclusionsColumns = [
-  {text: "Employee", dataField: 'eid'},
-  {text: "Client", dataField: 'cid'},
-  {text: "Start", dataField: 'exStart', cellsFormat: 'MM/dd/yyyy'},
-  {text: "End", dataField: 'exEnd', cellsFormat: 'MM/dd/yyyy'}
+  { text: "Employee", dataField: 'eid', displayField: 'employee', width: 225 },
+  { text: "Client", dataField: 'cid', displayField: 'client', width: 225 },
+  { text: "Start", dataField: 'exStart', cellsFormat: 'MM/dd/yyyy', width: 89 },
+  { text: "End", dataField: 'exEnd', cellsFormat: 'MM/dd/yyyy', width: 89 }
 ];
 
 var exclusionsAdapter = new $.jqx.dataAdapter(exclusionsSource);
 
 var exclusionsGrid;
+
+var individualAdapter = new $.jqx.dataAdapter({
+  url: "helpers/individualRoles.php",
+  dataType: 'json',
+  dataFields: [
+    {name: 'userNum', type: 'int'},
+    {name: 'employee', value: 'userNum', values: {
+      source: activeEmployeesAdapter.records,
+      value: 'uid',
+      name: 'employeeFullName' }
+    },
+    {name: 'grp', type: 'string'},
+    {name: 'startDate', map: 'startDate>date', type: 'date'},
+    {name: 'endDate', map: 'endDate>date', type: 'date'}
+  ],
+  id: 'ugId'
+});
+
+var individualColumns = [
+  {text: 'User Name', dataField: 'userNum', displayField: 'employee'},
+  {text: 'Group', dataField: 'grp', displayField: 'group'},
+  {text: 'startDate', dataField: 'startDate', cellsFormat: 'MM/dd/yyyy'},
+  {text: 'endDate', dataField: 'endDate', cellsFormat: 'MM/dd/yyyy'}
+];
+
+var individualPermissionsGrid;
 
 var userAccessSource = {
   url: "helpers/userAccess.php",
@@ -110,7 +157,7 @@ var userAccessSource = {
     {name: 'emiDuplicates', map: 'dupes', type: 'int'}
   ],
   id: 'hrID',
-  pagesize: 14
+  pageSize: 14
 };
 
 var userAccessColumns = [
@@ -148,7 +195,7 @@ var btnDeleteIndividualPermission;
 var btnGrantUserAccess;
 var btnDenyUserAccess;
 var btnResetPassword;
-var btnEMIwindow;
+var btnEMIWindow;
 
 /* Exclusion detail window */
 var clientExclusionDetailWindow;
@@ -158,23 +205,3 @@ var cewEmployee;
 var cewClient;
 var cewStartDate;
 var cewEndDate;
-
-var activeEmployeesAdapter = new $.jqx.dataAdapter({
-  url: "helpers/activeEmployees.php",
-  dataType: 'json',
-  dataFields: [
-    { name: 'uid', type: 'int' },
-    { name: 'employeeFullName', map: 'en', type: 'string' }
-  ],
-  id: 'uid'
-});
-
-var activeClientsAdapter = new $.jqx.dataAdapter({
-  localData: activeClientsStatic,
-  dataType: 'json',
-  dataFields: [
-    { name: 'uid', type: 'int' },
-    { name: 'clientFullName', map: 'cf', type: 'string' }
-  ],
-  id: 'uid'
-});
